@@ -1,0 +1,5 @@
+Lens dirt asset: Unity Technologies PostProcessing v1, LensDirt03.png.
+Source: https://github.com/Unity-Technologies/PostProcessing/blob/933df236f509ed64ae5763ed57af33f2342cd1c2/PostProcessing/Textures/Lens%20Dirt/LensDirt03.png
+License: MIT, copyright 2014-2017 Unity Technologies. See LICENSE-UNITY-LENSDIRT-MIT.txt.
+Original 3840x2160 PNG retained byte-for-byte, renamed Spektra-LensDirt.png. The shader decodes its RGB and uses luminance as a flare-scattering mask. Photographic capture provenance is not verified. This is an artistic screen-space implementation, not a calibrated dirt-scattering model.
+SHA256: 787e360064b98c6a3894feed8941c3ab85c8fbfdbbec3a1ee99a0a6efcd18cfe

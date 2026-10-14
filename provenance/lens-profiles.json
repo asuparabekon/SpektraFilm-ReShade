@@ -1,0 +1,362 @@
+[
+  {
+    "radius_mm": 13.411846033964004,
+    "pixel_mm": 0.004,
+    "depth_mm": 10000,
+    "apertures": [
+      {
+        "aperture": 1.8,
+        "sensor_z_mm": 73.02338409423828,
+        "focal_length_mm": 51.41787269953103
+      },
+      {
+        "aperture": 2.8,
+        "sensor_z_mm": 73.02188873291016,
+        "focal_length_mm": 51.41787269953103
+      },
+      {
+        "aperture": 4.0,
+        "sensor_z_mm": 73.04448699951172,
+        "focal_length_mm": 51.41787269953103
+      }
+    ],
+    "wavelength_um": [
+      0.6563,
+      0.5876,
+      0.4861
+    ],
+    "rays_per_field_channel": 32768,
+    "fields": 17,
+    "kernel_size": 129,
+    "design_info": "JP 1987-087922 Example 1 (Canon EF50mm f1.8)",
+    "label": "Canon EF 50mm f/1.8",
+    "crop_factor": 1.613,
+    "distortion": {
+      "model": "poly3",
+      "focal": "50",
+      "k1": "-0.00149"
+    },
+    "tca": {
+      "model": "poly3",
+      "focal": "50",
+      "vr": "1.0000033",
+      "vb": "0.9999942"
+    },
+    "distortion_mm": [
+      0.0,
+      -2.680110249370242e-05,
+      0.0
+    ],
+    "tca_mm": [
+      [
+        1.0000033,
+        0.0,
+        0.0
+      ],
+      [
+        0.9999942,
+        0.0,
+        0.0
+      ]
+    ],
+    "vignetting_interpolated_at_10m": [
+      [
+        -0.8917,
+        0.6906,
+        -0.2492
+      ],
+      [
+        -0.103,
+        -0.0537,
+        0.0306
+      ],
+      [
+        -0.0827,
+        -0.0989,
+        0.0752
+      ]
+    ],
+    "aperture_values": [
+      1.8,
+      2.8,
+      4
+    ],
+    "lensfun_vignetting_interpolation": "inverse-distance weighting p=3.5 in (4/aperture, 0.1/distance), exact-match threshold 0.0001"
+  },
+  {
+    "radius_mm": 21.633307652783937,
+    "pixel_mm": 0.004,
+    "depth_mm": 10000,
+    "apertures": [
+      {
+        "aperture": 2.8,
+        "computed_f_number": 2.7983361586528317,
+        "sensor_z_mm": 62.58930206298828,
+        "focal_length_mm": 38.99620860714649
+      },
+      {
+        "aperture": 4,
+        "computed_f_number": 3.9989481431368925,
+        "sensor_z_mm": 62.621620178222656,
+        "focal_length_mm": 38.99620860714649
+      },
+      {
+        "aperture": 5.6,
+        "computed_f_number": 5.602325853554601,
+        "sensor_z_mm": 62.64134216308594,
+        "focal_length_mm": 38.99620860714649
+      }
+    ],
+    "wavelength_um": [
+      0.6563,
+      0.5876,
+      0.4861
+    ],
+    "rays_per_field_channel": 32768,
+    "fields": 17,
+    "kernel_size": 129,
+    "design": "ef40mm_f2.8",
+    "design_info": "Upstream DeepLens optical design",
+    "label": "Canon EF 40mm f/2.8 STM",
+    "crop_factor": 1,
+    "distortion": {
+      "model": "ptlens",
+      "focal": "40",
+      "a": "0.01087",
+      "b": "-0.02951",
+      "c": "0.0162"
+    },
+    "tca": {
+      "model": "poly3",
+      "focal": "40",
+      "br": "-0.0001009",
+      "vr": "1.0003216",
+      "bb": "0.0001426",
+      "vb": "0.9997719"
+    },
+    "distortion_mm": [
+      6.2294865808043334e-06,
+      -0.0002034377546749896,
+      0.0013434360338739238
+    ],
+    "tca_mm": [
+      [
+        1.0003216,
+        0.0,
+        -7.006944444444444e-07
+      ],
+      [
+        0.9997719,
+        0.0,
+        9.902777777777777e-07
+      ]
+    ],
+    "vignetting_interpolated_at_10m": [
+      [
+        -1.577593978526434,
+        1.3807920125650779,
+        -0.5310965359510498
+      ],
+      [
+        -0.39770343165738953,
+        -0.2866912262424594,
+        0.1646964915318662
+      ],
+      [
+        -0.5091978426266367,
+        0.09929470126145702,
+        0.013103048838655677
+      ]
+    ],
+    "aperture_values": [
+      2.8,
+      4,
+      5.6
+    ],
+    "lensfun_vignetting_interpolation": "inverse-distance weighting p=3.5 in (4/aperture, 0.1/distance), exact-match threshold 0.0001"
+  },
+  {
+    "radius_mm": 21.633307652783937,
+    "pixel_mm": 0.004,
+    "depth_mm": 10000,
+    "apertures": [
+      {
+        "aperture": 1.8,
+        "computed_f_number": 1.8009243173026637,
+        "sensor_z_mm": 113.0927963256836,
+        "focal_length_mm": 84.99712327860978
+      },
+      {
+        "aperture": 2.8,
+        "computed_f_number": 2.80080477351358,
+        "sensor_z_mm": 113.1142349243164,
+        "focal_length_mm": 84.99712327860978
+      },
+      {
+        "aperture": 4,
+        "computed_f_number": 4.00183948139545,
+        "sensor_z_mm": 113.1302261352539,
+        "focal_length_mm": 84.99712327860978
+      }
+    ],
+    "wavelength_um": [
+      0.6563,
+      0.5876,
+      0.4861
+    ],
+    "rays_per_field_channel": 32768,
+    "fields": 17,
+    "kernel_size": 129,
+    "design": "ef85mm_f1.8",
+    "design_info": "JP 1993-157964 Example 1 (Canon EF85mm f1.8 USM)",
+    "label": "Canon EF 85mm f/1.8 USM",
+    "crop_factor": 1,
+    "distortion": {
+      "model": "ptlens",
+      "focal": "85",
+      "a": "-0.000989",
+      "b": "-0.002335",
+      "c": "0"
+    },
+    "tca": {
+      "model": "poly3",
+      "focal": "85",
+      "br": "-0.0000287",
+      "vr": "1.0001408",
+      "bb": "0.0000182",
+      "vb": "0.9998642"
+    },
+    "distortion_mm": [
+      -5.647909769213211e-07,
+      -1.6054648075271568e-05,
+      0.0
+    ],
+    "tca_mm": [
+      [
+        1.0001408,
+        0.0,
+        -1.9930555555555554e-07
+      ],
+      [
+        0.9998642,
+        0.0,
+        1.2638888888888887e-07
+      ]
+    ],
+    "vignetting_interpolated_at_10m": [
+      [
+        -1.4465,
+        1.4135,
+        -0.6464
+      ],
+      [
+        0.0011074362019849765,
+        -0.8681119977389126,
+        0.44184248185081915
+      ],
+      [
+        0.031406526499134474,
+        -0.19012711920263387,
+        -0.12530160146905076
+      ]
+    ],
+    "aperture_values": [
+      1.8,
+      2.8,
+      4
+    ],
+    "lensfun_vignetting_interpolation": "inverse-distance weighting p=3.5 in (4/aperture, 0.1/distance), exact-match threshold 0.0001"
+  },
+  {
+    "radius_mm": 21.633307652783937,
+    "pixel_mm": 0.004,
+    "depth_mm": 10000,
+    "apertures": [
+      {
+        "aperture": 2.8,
+        "computed_f_number": 2.802211957194052,
+        "sensor_z_mm": 116.73286437988281,
+        "focal_length_mm": 100.03482144871288
+      },
+      {
+        "aperture": 4,
+        "computed_f_number": 4.001898774259318,
+        "sensor_z_mm": 116.73628234863281,
+        "focal_length_mm": 100.03482144871288
+      },
+      {
+        "aperture": 5.6,
+        "computed_f_number": 5.600262385438071,
+        "sensor_z_mm": 116.740478515625,
+        "focal_length_mm": 100.03482144871288
+      }
+    ],
+    "wavelength_um": [
+      0.6563,
+      0.5876,
+      0.4861
+    ],
+    "rays_per_field_channel": 32768,
+    "fields": 17,
+    "kernel_size": 129,
+    "design": "ef100mm_f2.8",
+    "design_info": "JP 1991-141313 Example 1 (Canon EF100mm f2.8 Macro)",
+    "label": "Canon EF 100mm f/2.8 Macro USM",
+    "crop_factor": 1,
+    "distortion": {
+      "model": "ptlens",
+      "focal": "100",
+      "a": "-0.00126",
+      "b": "0.00429",
+      "c": "-0.00887"
+    },
+    "tca": {
+      "model": "poly3",
+      "focal": "100",
+      "br": "-0.0000316",
+      "vr": "1.0003482",
+      "bb": "0.0000299",
+      "vb": "0.9998855"
+    },
+    "distortion_mm": [
+      -7.123791447503883e-07,
+      2.927575422019128e-05,
+      -0.0007306082445379188
+    ],
+    "tca_mm": [
+      [
+        1.0003482,
+        0.0,
+        -2.1944444444444447e-07
+      ],
+      [
+        0.9998855,
+        0.0,
+        2.0763888888888888e-07
+      ]
+    ],
+    "vignetting_interpolated_at_10m": [
+      [
+        -1.362320361484726,
+        1.3687033212792628,
+        -0.6354540898296623
+      ],
+      [
+        0.0947557343976521,
+        -0.9788566128537822,
+        0.4885578220390084
+      ],
+      [
+        -0.11281341060462179,
+        0.14573081382146733,
+        -0.21515685492686185
+      ]
+    ],
+    "aperture_values": [
+      2.8,
+      4,
+      5.6
+    ],
+    "lensfun_vignetting_interpolation": "inverse-distance weighting p=3.5 in (4/aperture, 0.1/distance), exact-match threshold 0.0001"
+  }
+]

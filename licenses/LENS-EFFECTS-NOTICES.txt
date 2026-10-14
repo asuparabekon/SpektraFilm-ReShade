@@ -1,0 +1,44 @@
+Lens effects: diffraction and prescription-based flare
+
+Independent GPL-3.0 shader/baker implementation. No RealBloom or Realflare
+source code is copied into this package. Algorithm references:
+- RealBloom (bean-mhm): Fourier aperture diffraction and image convolution.
+  https://github.com/bean-mhm/realbloom
+- Realflare (Beat Reichenbach): two-interface reflection paths, pupil clipping,
+  spectral glass response and single-layer antireflection coatings.
+  https://github.com/beatreichenbach/realflare
+
+Lens geometry is derived from the existing DeepLens prescriptions shipped in
+lens-designs/. Their pinned revision, Apache-2.0 license and patent/design
+identifications are recorded in LENS-NOTICES.txt. This does not reproduce a
+measured retail lens, and is not a full Realflare ray-tracer port.
+
+Baked lens-effect metadata is retained in ../provenance/.
+Output: Spektra-Diffraction.png, Spektra-LensEffects.fxh and
+lens-effects-assets.json. The metadata records each input design hash.
+
+Diffraction: 512-square pupil FFT; five through nine blades, three rounded
+blade states. Radial tail energy is integrated from the FFT, then reconstructed
+as symmetric edge-normal spokes with 8/16 samples per axis on the GPU. RGB
+wavelengths scale the footprint. It is a compressed tail approximation, not
+full FFT convolution; the direct image and existing geometric blur are kept.
+Physical scale is wavelength times f-number in sensor millimetres. Size values
+above one are deliberate artistic enlargement. A round prefiltered component
+approximates rounded open blades. The 5/7/8/8 blade profile presets and curvature
+are assumptions inspired by these lens families, not measured aperture masks.
+
+Ghosts: first-order/paraxial propagation through the lens surfaces, two
+reflections per path, clear-aperture clipping, Abbe-derived Cauchy dispersion,
+and six selected paths per profile. Aspheres use their vertex curvature.
+The GPU approximates each ghost by a pupil-shaped filtered image transform;
+complex caustics and true field-dependent distortion are not represented.
+Coating design wavelengths of 500/535/570 nm are assumed, not measured. Ghost
+energy is normalized for an artistic strength control, not calibrated radiometry.
+
+Aperture linking shares the existing three aperture selections with diffraction
+size/blade state and ghost footprint/throughput. Geometric lens softness and
+vignetting already use that selection. Manual overrides retain independent
+profile, aperture, blade count, rotation, size, intensity and coating colour.
+No DOF, aperture-driven exposure change, CPU readback or runtime ray tracing.
+All new optical effects use the lens-transformed source and run before film
+response. Film damage and grain remain late. Off-screen light is unavailable.

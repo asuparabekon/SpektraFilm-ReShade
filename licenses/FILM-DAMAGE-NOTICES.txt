@@ -1,0 +1,21 @@
+Scanned film-damage masks
+
+Source: Daniela Ivanova, FilmDamageSimulator
+https://github.com/daniela997/FilmDamageSimulator
+Revision: bffc46553a3255d8bc4432a1a3102a0fec3dce7a
+License: MIT; see LICENSE-FILMDAMAGE-MIT.txt.
+
+Original empty 35mm Lomochrome Purple film scans and annotations, used in
+Simulating analogue film damage to analyse and improve artefact restoration
+on high-resolution scans (Eurographics 2023).
+
+Spektra-FilmDamage.png contains individual defects extracted from scans 1, 2,
+3, 5 and 8. Annotation masks select the scanned pixels. Local background
+suppression removes scanner grain; grayscale coverage is retained. Scratch
+orientation is normalized to the film transport direction. Crops are padded
+and resampled into a linear coverage atlas: red=dust, green=hair, blue=scratch.
+
+64 dust examples, 64 hair examples and 39 distinct scratches populate 64
+slots per channel. Scratch slots repeat after exhausting the unique examples.
+SHA-256 source hashes and annotation identifiers are in film-damage-assets.json.
+Extraction metadata is retained in ../provenance/film-damage-assets.json.

@@ -1,0 +1,12 @@
+Initial standalone ReShade publication
+
+- Adapted spektrafilm's exposure, development and print response to staged GPU LUTs.
+- Packed 33-cubed exposure/print tables into two 8-bit planes for 16-bit values,
+  with 2048-sample film characteristic curves and 20 film / 8 print profiles.
+- Added softer paper variants and neutral-pivot density compression for the
+  artistic paper-contrast control; original upstream profile notices are unchanged.
+- Adapted vkdt's density-domain grain model to ReShade's film/print pipeline.
+- Added pre-grading, automatic exposure, optical diffusion, halation, lens profiles,
+  veiling glare, diffraction, flares, lens dirt and scanned film defects.
+- Added shared compiler-compatible generation for Windows and Proton.
+- Published the standalone shader and source modules without game-specific addons.

@@ -1,0 +1,101 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag to publish; leave empty to build a preview only'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ inputs.tag && format('refs/tags/{0}', inputs.tag) || github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Select version
+        id: version
+        env:
+          REQUESTED_TAG: ${{ inputs.tag }}
+        shell: bash
+        run: |
+          tag="$REQUESTED_TAG"
+          if [[ -z "$tag" && "$GITHUB_REF_TYPE" == tag ]]; then
+            tag="$GITHUB_REF_NAME"
+          fi
+          commit=$(git rev-parse HEAD)
+          if [[ -n "$tag" ]]; then
+            [[ "$tag" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$ ]] || {
+              echo 'Expected a version tag such as v1.2.3 or v1.2.3-rc.1' >&2
+              exit 1
+            }
+            [[ "$(git rev-parse "refs/tags/$tag^{commit}")" == "$commit" ]]
+            echo "name=$tag" >> "$GITHUB_OUTPUT"
+            echo 'publish=true' >> "$GITHUB_OUTPUT"
+          else
+            echo "name=preview-${commit:0:12}" >> "$GITHUB_OUTPUT"
+            echo 'publish=false' >> "$GITHUB_OUTPUT"
+          fi
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+
+      - name: Verify generated shader
+        run: |
+          python3 tools/generate.py
+          git diff --exit-code -- Shaders
+
+      - name: Package shaders and licenses
+        env:
+          VERSION: ${{ steps.version.outputs.name }}
+          SOURCE_COMMIT: ${{ steps.version.outputs.commit }}
+        run: python3 tools/package.py --version "$VERSION" --source-ref "$SOURCE_COMMIT"
+
+      - name: Save downloadable build
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: SpektraFilm-ReShade-${{ steps.version.outputs.name }}
+          path: |
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
+      - name: Publish GitHub release
+        if: steps.version.outputs.publish == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.version.outputs.name }}
+        shell: bash
+        run: |
+          cat > dist/notes.txt <<'NOTES'
+          Download the SpektraFilm-ReShade ZIP below and copy its Shaders and Textures folders into your game's reshade-shaders directory. No addon is required.
+
+          Input/output is SDR sRGB. Film damage is included and defaults off; raise Film damage amount to enable scanned dust, hairs and scratches.
+
+          Credits, licenses and a link to the exact corresponding source are included. A SHA-256 checksum accompanies the ZIP.
+          NOTES
+          flags=()
+          if [[ "$VERSION" == *-* ]]; then
+            flags+=(--prerelease)
+          fi
+          gh release create "$VERSION" \
+            "dist/SpektraFilm-ReShade-$VERSION.zip" \
+            "dist/SpektraFilm-ReShade-$VERSION.zip.sha256" \
+            --verify-tag --title "SpektraFilm-ReShade $VERSION" \
+            --notes-file dist/notes.txt "${flags[@]}"

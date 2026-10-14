@@ -1,0 +1,19 @@
+Lens models: DeepLens + Lensfun
+
+DeepLens: KAUST Computational Imaging Group, Xinge Yang and contributors.
+https://github.com/vccimaging/DeepLens
+Pinned commit: 278e4f720a4549187a51edaea57bb658548911ce
+Apache-2.0; see LICENSE-DEEPLENS-APACHE-2.0.txt.
+Optical design: datasets/lenses/camera/ef50mm_f1.8.json, identified upstream as JP 1987-087922 Example 1 (Canon EF50mm f1.8).
+Changes: simulated geometric RGB PSFs at 17 radial fields, 10m object distance, three apertures; removed per-channel centroids; compressed to equal-mass samples with local variance prefiltering; encoded in Spektra-LensPSF.png. This is a patent-design approximation, not a measured reconstruction of an individual retail lens.
+
+Lensfun contributors: https://github.com/lensfun/lensfun
+Pinned commit: 84401750ea96c67db927801cca9be28139db1a50
+Calibration data: data/db/slr-canon.xml, Canon EF 50mm f/1.8, crop factor 1.613 (Canon 650D), distance 10m.
+Data licensed CC BY-SA 3.0; see LICENSE-LENSFUN-DATA-CC-BY-SA-3.0.txt. Derived data in Spektra-Lens.fxh and lens-calibration.xml retain that license.
+Library/model conventions: LGPL-3.0; see LICENSE-LENSFUN-LGPL-3.0.txt and accompanying GPL-3.0 text.
+Changes: selected aperture rows, converted poly3 coefficient to physical millimetres using Lensfun's focal-length-preserving convention, implemented inverse sampling and vignetting in ReShade.
+
+Independent ReShade integration code remains GPL-3.0. Existing film-profile licensing remains unchanged.
+
+Additional profiles: DeepLens ef40mm_f2.8.json, ef85mm_f1.8.json (JP1993-157964 Example 1), ef100mm_f2.8.json (JP1991-141313 Example 1). Same pinned sources and licenses above. Matching Lensfun full-frame EF40 STM, EF85 USM and EF100 Macro USM calibrations are in lens-calibrations.xml. The 100mm combines the upstream optical design with USM calibration: an inspired hybrid, not an exact retail lens reconstruction. Aperture/distance vignetting uses inverse-distance interpolation. All four designs and derived numerical metadata are supplied in ../provenance/lens-designs/ and ../provenance/lens-profiles.json.
